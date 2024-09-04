@@ -36,6 +36,8 @@ def livro_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     if request.method == "DELETE":
         livro.delete()
+        return Response({"message":"Instancia apagada com sucesso"}, status=200)
+
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
