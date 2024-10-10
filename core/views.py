@@ -11,6 +11,15 @@ from rest_framework import generics
 from .models import Livro, Autor, Categoria
 from .serializers import LivroSerializer, AutorSerializer, CategoriaSerializer
 from .filters import LivroFilter
+@csrf_exempt
+@api_view(['POST'])
+def livro_list_create(request):
+    if request.method == "POST":
+        serializer = LivroSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LivroList(generics.ListCreateAPIView):
     queryset = Livro.objects.all()
