@@ -15,4 +15,4 @@ class CategoriaFilter(filters.FilterSet):
 
     class Meta:
         model = Categoria
-        fields = ['nome']
+        fields = ['nome']
